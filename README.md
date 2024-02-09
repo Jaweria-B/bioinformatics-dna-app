@@ -16,6 +16,9 @@ Analyze DNA sequences effortlessly with our DNA Nucleotide Count Web App. Get de
 - Responsive design compatible with various devices for seamless usage.
 - Offers test input of DNA sequences for users unfamiliar with input format.
 
+## Demo
+[Live Demo](https://dna-nucleotide-count-jb.streamlit.app)
+
 ## Usage
 
 1. Clone the repository.
