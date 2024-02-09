@@ -1,6 +1,4 @@
-######################
 # Import libraries
-######################
 
 import pandas as pd
 import streamlit as st
@@ -9,12 +7,10 @@ from PIL import Image
 import random
 
 # Session states
-
 st.session_state["input"] = False
 st.session_state["show_inp"] = True
 
 # Page Title
-
 st.write("""
 # :red[DNA] Nucleotide Count Web App
          
@@ -119,6 +115,7 @@ def main():
             """
         )
 
+        # Prints Dictionary
         st.subheader('1. Dictionary')
 
         X = DNA_nucleotide_count(sequence)
@@ -152,6 +149,10 @@ def main():
             width=alt.Step(80)  # controls width of bar.
         )
         st.write(p)
+
+        st.write("""
+        Made By **_Jaweria Batool_**
+        """)
 
 if __name__ == "__main__":
     main()
