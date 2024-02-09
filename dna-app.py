@@ -19,12 +19,17 @@ st.write("""
 # :red[DNA] Nucleotide Count Web App
          
 This app counts the nucleotide composition of query DNA!
+        
 ***        
 """)
 
-image = Image.open('dna.png')
+image = Image.open('./assets/dna.png')
 
 st.image(image, use_column_width=True)
+
+st.write(
+    """Analyze DNA sequences effortlessly with our DNA Nucleotide Count Web App. Get detailed breakdowns and visualizations of nucleotide composition in just a few clicks!"""
+)
 
 st.divider()
 
@@ -53,16 +58,19 @@ def generate_input():
     return input
     
 
+def DNA_nucleotide_count(seq):
+    d = dict([
+        ('A', seq.count('A')),
+        ('T', seq.count('T')),
+        ('G', seq.count('G')),
+        ('C', seq.count('C'))
+    ])
+
+    return d
 
 def main():
-    ######################
-    # Input Text Box
-    ######################
-
-    #st.sidebar.header('Enter DNA sequence')
+    
     st.header('Input')
-
-    # >DNA Query 2\n
 
     sequence_input = ""
 
@@ -92,22 +100,26 @@ def main():
         """)
 
         ## Prints the input DNA sequence
-        st.header('INPUT (DNA Query)')
+        st.write(
+            f"""
+            ## DNA Query Entered:  \n
+            >DNA Query
+            """
+        )
         sequence
 
+        st.divider()
+
         ## DNA nucleotide count
-        st.header('OUTPUT (DNA Nucleotide Count)')
+        st.header('OUTPUT')
 
-        st.subheader('1. Print Dictionary')
-        def DNA_nucleotide_count(seq):
-            d = dict([
-                ('A', seq.count('A')),
-                ('T', seq.count('T')),
-                ('G', seq.count('G')),
-                ('C', seq.count('C'))
-            ])
+        st.write(
+            f"""
+            > ### DNA Nucleotide Count
+            """
+        )
 
-            return d
+        st.subheader('1. Dictionary')
 
         X = DNA_nucleotide_count(sequence)
 
@@ -116,14 +128,14 @@ def main():
         X
 
         ### 2. Print text
-        st.subheader('2. Print text')
-        st.write('There are  ' + '**' + str(X['A']) + '**' + ' adenine (A)')
-        st.write('There are  ' + '**' + str(X['T']) + '**' + ' thymine (T)')
-        st.write('There are  ' + '**' + str(X['G']) + '**' + ' guanine (G)')
-        st.write('There are  ' + '**' + str(X['C']) + '**' + ' cytosine (C)')
+        st.subheader('2. Textual Information')
+        st.write('- There are  ' + '**' + str(X['A']) + '**' + ' ***adenine*** (A)')
+        st.write('- There are  ' + '**' + str(X['T']) + '**' + ' ***thymine*** (T)')
+        st.write('- There are  ' + '**' + str(X['G']) + '**' + ' ***guanine*** (G)')
+        st.write('- There are  ' + '**' + str(X['C']) + '**' + ' ***cytosine*** (C)')
 
         ## 3. Display DataFrame
-        st.subheader('3. Display DataFrame')
+        st.subheader('3. DataFrame')
         df = pd.DataFrame.from_dict(X, orient='index')
         df = df.rename( {0: 'count'}, axis='columns')
         df.reset_index(inplace=True)
@@ -131,7 +143,7 @@ def main():
         st.write(df)
 
         ### 4. Display Bar Chart using Altair
-        st.subheader('4. Display Bar chart')
+        st.subheader('4. Bar chart')
         p = alt.Chart(df).mark_bar().encode(
             x='nucleotide',
             y='count'
