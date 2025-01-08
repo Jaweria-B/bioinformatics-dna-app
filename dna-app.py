@@ -21,7 +21,7 @@ This app counts the nucleotide composition of query DNA!
 
 image = Image.open('./assets/dna.png')
 
-st.image(image, use_column_width=True)
+st.image(image, use_container_width=True)
 
 st.write(
     """Analyze DNA sequences effortlessly with our DNA Nucleotide Count Web App. Get detailed breakdowns and visualizations of nucleotide composition in just a few clicks!"""
